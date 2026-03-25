@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  app:
+    image: node:14
+    working_dir: /app
+    volumes:
+      - .:/app
+    ports:
+      - "3000:3000"
+    command: npm start
+    env_file:
+      - .env
+
+  db:
+    image: mongo:4.4
+    container_name: marketing_db
+    volumes:
+      - mongo-data:/data/db
+    ports:
+      - "27017:27017"
+
+volumes:
+  mongo-data:
